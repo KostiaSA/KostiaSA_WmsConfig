@@ -1,0 +1,59 @@
+import * as sql from "mssql"
+import {
+    sqlServerAddress, sqlServerPort, sqlLogin, sqlPassword, BuhtaDatabase,
+    sqlServerInstance, WmsDatabase
+} from "../config/SqlConnections";
+
+export function executeBuhtaSql(sqlBatch: string): Promise<any> {
+    return executeSql(sqlBatch, BuhtaDatabase);
+}
+
+export function executeWmsSql(sqlBatch: string): Promise<any> {
+    return executeSql(sqlBatch, WmsDatabase);
+}
+
+export function getValueFromBuhtaSql(sqlBatch: string, columnName: string): Promise<any> {
+    return executeBuhtaSql(sqlBatch).then((rows)=> {
+        return rows[0][0][columnName];
+    });
+}
+
+export function getValueFromWmsSql(sqlBatch: string, columnName: string): Promise<any> {
+    return executeWmsSql(sqlBatch).then((rows)=> {
+        return rows[0][0][columnName];
+    });
+}
+
+function executeSql(sqlBatch: string, database: string): Promise<any> {
+    let options = {instanceName: sqlServerInstance} as any;
+
+    let config: sql.config = {
+        driver: "msnodesqlv8",
+        pool: {
+            min: 1,
+            max: 1,
+            idleTimeoutMillis: 5000 /// не работает
+        },
+        server: sqlServerAddress,
+        port: sqlServerPort,
+        user: sqlLogin,
+        database: database,
+        password: sqlPassword,
+        options: options
+    }
+
+    let connection = new sql.Connection(config);
+
+    return connection
+        .connect()
+        .then(()=> {
+            let req = new sql.Request(connection);
+            req.multiple = true;
+            return req.batch(sqlBatch);
+        })
+        .then((rowsSet: any)=> {
+            //console.dir(rowsSet);
+            return rowsSet;
+        });
+
+}

@@ -8,6 +8,8 @@ import {init_table_Операция} from "../config/tables/Операция";
 import {init_table_Товар} from "../config/tables/Товар";
 import {init_table_Паллета} from "../config/tables/Паллета";
 import {init_table_Ячейка} from "../config/tables/Ячейка";
+import {init_table_ЗаявкаНаПриход} from "../config/tables/ЗаявкаНаПриход";
+import {init_table_ЗаявкаНаПриходСпец} from "../config/tables/ЗаявкаНаПриходСпец";
 
 
 
@@ -23,6 +25,12 @@ init_table_Задание()
     })
     .then(()=>{
         return init_table_Ячейка();
+    })
+    .then(()=>{
+        return init_table_ЗаявкаНаПриход();
+    })
+    .then(()=>{
+        return init_table_ЗаявкаНаПриходСпец();
     })
     .then(()=>{
         console.log("\n");

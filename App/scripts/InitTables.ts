@@ -4,7 +4,7 @@ import {
 } from "../core/MsSqlDb";
 import {consoleOk, consoleError, consoleLog} from "../core/console";
 import {init_table_Задание} from "../config/tables/Задание";
-import {init_table_Операция} from "../config/tables/Операция";
+import {init_table_ЗаданиеСпец} from "../config/tables/ЗаданиеСпец";
 import {init_table_Товар} from "../config/tables/Товар";
 import {init_table_Паллета} from "../config/tables/Паллета";
 import {init_table_Ячейка} from "../config/tables/Ячейка";
@@ -15,7 +15,7 @@ import {init_table_ЗаявкаНаПриходСпец} from "../config/tables/
 
 init_table_Задание()
     .then(()=>{
-        return init_table_Операция();
+        return init_table_ЗаданиеСпец();
     })
     .then(()=>{
         return init_table_Товар();

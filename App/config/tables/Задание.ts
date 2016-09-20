@@ -14,10 +14,12 @@ export function init_table_Задание(): Promise<void> {
                 ${create} VIEW Задание AS
                 SELECT
                   Ключ,
+                  Вид as ДокументВид, 
+                  Договор as ДокументДоговор, 
                   Номер,
                   Дата,
                   [Когда создал] Время,
-                  
+                  [Юр.лицо] ЮрЛицо,
                   
                   0 as fake 
                 FROM [${BuhtaDatabase}].dbo.Документ

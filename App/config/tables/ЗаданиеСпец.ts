@@ -2,16 +2,16 @@ import {getIsExistsBuhtaView, executeWmsSql, getIsExistsWmsView} from "../../cor
 import {consoleError, consoleOk} from "../../core/console";
 import {BuhtaDatabase} from "../SqlConnections";
 
-export function init_table_Операция(): Promise<void> {
+export function init_table_ЗаданиеСпец(): Promise<void> {
     let create = "CREATE";
 
-    return getIsExistsWmsView("Операция")
+    return getIsExistsWmsView("ЗаданиеСпец")
         .then((isExists: boolean)=> {
             if (isExists === true)
                 create = "ALTER";
 
             let sql = `
-                ${create} VIEW Операция AS
+                ${create} VIEW ЗаданиеСпец AS
                 SELECT
                    Ключ, 
                    Дата,
@@ -50,7 +50,7 @@ export function init_table_Операция(): Promise<void> {
 
         })
         .then(()=> {
-            consoleOk("init_table_Операция");
+            consoleOk("init_table_ЗаданиеСпец");
         })
         .catch((err: any)=> {
             consoleError(err);

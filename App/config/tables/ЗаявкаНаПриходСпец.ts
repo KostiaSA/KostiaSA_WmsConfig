@@ -20,7 +20,7 @@ export function init_table_ЗаявкаНаПриходСпец(): Promise<void>
                   Количество,
                   
                   0 as fake 
-                FROM [${BuhtaDatabase}].dbo.Догспец WHERE Вид=1
+                FROM [${BuhtaDatabase}].dbo.Догспец
             `;
 
             return executeWmsSql(sql);

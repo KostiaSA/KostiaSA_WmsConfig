@@ -36,6 +36,7 @@ export function getIsExistsBuhtaTable(tableName: string): Promise<boolean> {
             return result !== null
         });
 }
+
 export function getIsExistsWmsTable(tableName: string): Promise<boolean> {
     let sql = "SELECT OBJECT_ID('" + tableName + "', 'U') AS Result";
 
@@ -49,6 +50,42 @@ export function getIsExistsBuhtaView(viewName: string): Promise<boolean> {
     let sql = "SELECT OBJECT_ID('" + viewName + "', 'V') AS Result";
 
     return getValueFromBuhtaSql(sql, "Result")
+        .then((result: any)=> {
+            return result !== null
+        });
+}
+
+export function getIsExistsBuhtaProc(procName: string): Promise<boolean> {
+    let sql = "SELECT OBJECT_ID('" + procName + "', 'P') AS Result";
+
+    return getValueFromBuhtaSql(sql, "Result")
+        .then((result: any)=> {
+            return result !== null
+        });
+}
+
+export function getIsExistsWmsProc(procName: string): Promise<boolean> {
+    let sql = "SELECT OBJECT_ID('" + procName + "', 'P') AS Result";
+
+    return getValueFromWmsSql(sql, "Result")
+        .then((result: any)=> {
+            return result !== null
+        });
+}
+
+export function getIsExistsBuhtaFunc(funcName: string): Promise<boolean> {
+    let sql = "SELECT OBJECT_ID('" + funcName + "', 'F') AS Result";
+
+    return getValueFromBuhtaSql(sql, "Result")
+        .then((result: any)=> {
+            return result !== null
+        });
+}
+
+export function getIsExistsWmsFunc(funcName: string): Promise<boolean> {
+    let sql = "SELECT OBJECT_ID('" + funcName + "', 'F') AS Result";
+
+    return getValueFromWmsSql(sql, "Result")
         .then((result: any)=> {
             return result !== null
         });

@@ -3,14 +3,15 @@ import {
     getIsExistsBuhtaView, getIsExistsBuhtaTable
 } from "../core/MsSqlDb";
 import {consoleOk, consoleError, consoleLog} from "../core/console";
+import {create_proc_СоздатьЗаданиеНаПриемку} from "../config/tasks/ЗаданиеНаПриемку/create_proc_ЗаданиеНаПриемку";
 
 
-// Promise.all([getIsExistsBuhtaTable("ТМЦ")])
-//
-//     .then((result: boolean)=> {
-//         consoleLog("exists", result);
-//     })
-//     .catch((err: any)=> {
-//         consoleError("buhta connect", err);
-//     })
+
+create_proc_СоздатьЗаданиеНаПриемку()
+     .then(()=> {
+         consoleOk("ok");
+     })
+     .catch((err: any)=> {
+         consoleError("error", err);
+     })
 

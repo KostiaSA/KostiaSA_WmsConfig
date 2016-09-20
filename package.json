@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "check-sql": "node build/scripts/CheckSqlConnections.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "init-tables": "node build/scripts/InitTables.js",
+    "test1": "node build/scripts/test1.js"
   },
   "devDependencies": {
     "typescript": "^2.0.2"

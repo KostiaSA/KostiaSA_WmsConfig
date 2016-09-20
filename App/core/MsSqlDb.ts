@@ -18,6 +18,42 @@ export function getValueFromBuhtaSql(sqlBatch: string, columnName: string): Prom
     });
 }
 
+
+export function getIsExistsWmsView(viewName: string): Promise<boolean> {
+    let sql = "SELECT OBJECT_ID('" + viewName + "', 'V') AS Result";
+
+    return getValueFromWmsSql(sql, "Result")
+        .then((result: any)=> {
+            return result !== null
+        });
+}
+
+export function getIsExistsBuhtaTable(tableName: string): Promise<boolean> {
+    let sql = "SELECT OBJECT_ID('" + tableName + "', 'U') AS Result";
+
+    return getValueFromBuhtaSql(sql, "Result")
+        .then((result: any)=> {
+            return result !== null
+        });
+}
+export function getIsExistsWmsTable(tableName: string): Promise<boolean> {
+    let sql = "SELECT OBJECT_ID('" + tableName + "', 'U') AS Result";
+
+    return getValueFromWmsSql(sql, "Result")
+        .then((result: any)=> {
+            return result !== null
+        });
+}
+
+export function getIsExistsBuhtaView(viewName: string): Promise<boolean> {
+    let sql = "SELECT OBJECT_ID('" + viewName + "', 'V') AS Result";
+
+    return getValueFromBuhtaSql(sql, "Result")
+        .then((result: any)=> {
+            return result !== null
+        });
+}
+
 export function getValueFromWmsSql(sqlBatch: string, columnName: string): Promise<any> {
     return executeWmsSql(sqlBatch).then((rows)=> {
         return rows[0][0][columnName];

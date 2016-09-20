@@ -7,3 +7,7 @@ export function consoleOk(msg1: any, msg2?: any, msg3?: any) {
 export function consoleError(msg1: any, msg2?: any, msg3?: any) {
     console.log(chalk.bgRed(msg1), chalk.bgRed(msg2 || ""), chalk.bgRed(msg3 || ""));
 }
+
+export function consoleLog(msg1: any, msg2?: any, msg3?: any) {
+    console.log(chalk.bgYellow(msg1), chalk.bgYellow(msg2 || ""), chalk.bgYellow(msg3 || ""));
+}

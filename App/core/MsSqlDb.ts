@@ -91,6 +91,24 @@ export function getIsExistsWmsFunc(funcName: string): Promise<boolean> {
         });
 }
 
+export function getIsExistsWmsTrigger(triggerName: string): Promise<boolean> {
+    let sql = "SELECT OBJECT_ID('" + triggerName + "', 'TR') AS Result";
+
+    return getValueFromWmsSql(sql, "Result")
+        .then((result: any)=> {
+            return result !== null
+        });
+}
+
+export function getIsExistsBuhtaTrigger(triggerName: string): Promise<boolean> {
+    let sql = "SELECT OBJECT_ID('" + triggerName + "', 'TR') AS Result";
+
+    return getValueFromBuhtaSql(sql, "Result")
+        .then((result: any)=> {
+            return result !== null
+        });
+}
+
 export function getValueFromWmsSql(sqlBatch: string, columnName: string): Promise<any> {
     return executeWmsSql(sqlBatch).then((rows)=> {
         return rows[0][0][columnName];

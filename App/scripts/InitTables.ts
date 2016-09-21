@@ -10,6 +10,7 @@ import {init_table_Паллета} from "../config/tables/Паллета";
 import {init_table_Ячейка} from "../config/tables/Ячейка";
 import {init_table_ЗаявкаНаПриход} from "../config/tables/ЗаявкаНаПриход";
 import {init_table_ЗаявкаНаПриходСпец} from "../config/tables/ЗаявкаНаПриходСпец";
+import {create_table_Остаток, init_table_Остаток, create_trigger_Докспец_wms_Остаток} from "../config/tables/Остаток";
 
 
 
@@ -31,6 +32,15 @@ init_table_Задание()
     })
     .then(()=>{
         return init_table_ЗаявкаНаПриходСпец();
+    })
+    .then(()=>{
+        return create_table_Остаток();
+    })
+    .then(()=>{
+        return init_table_Остаток();
+    })
+    .then(()=>{
+        return create_trigger_Докспец_wms_Остаток();
     })
     .then(()=>{
         console.log("\n");

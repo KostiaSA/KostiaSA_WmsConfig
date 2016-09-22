@@ -1,6 +1,10 @@
 import {getIsExistsBuhtaView, executeWmsSql, getIsExistsWmsView} from "../../core/MsSqlDb";
 import {consoleError, consoleOk} from "../../core/console";
 import {BuhtaDatabase} from "../SqlConnections";
+import {registerSubconto} from "../../core/registerSubconto";
+
+
+registerSubconto({subconto: "CEL", tableName: "Ячейка"});
 
 export function init_table_Ячейка(): Promise<void> {
     let create = "CREATE";
@@ -17,6 +21,7 @@ export function init_table_Ячейка(): Promise<void> {
                   Ключ,
                   Номер,
                   Название,
+                  'ячейка '+ Номер+' '+Название as НомерНазвание,
                   [Штрих-код],
                   --[Ярус]
                   Высота,

@@ -74,7 +74,7 @@ export function getIsExistsWmsProc(procName: string): Promise<boolean> {
 }
 
 export function getIsExistsBuhtaFunc(funcName: string): Promise<boolean> {
-    let sql = "SELECT OBJECT_ID('" + funcName + "', 'F') AS Result";
+    let sql = "SELECT OBJECT_ID('" + funcName + "', 'FN') AS Result";
 
     return getValueFromBuhtaSql(sql, "Result")
         .then((result: any)=> {
@@ -83,7 +83,7 @@ export function getIsExistsBuhtaFunc(funcName: string): Promise<boolean> {
 }
 
 export function getIsExistsWmsFunc(funcName: string): Promise<boolean> {
-    let sql = "SELECT OBJECT_ID('" + funcName + "', 'F') AS Result";
+    let sql = "SELECT OBJECT_ID('" + funcName + "', 'FN') AS Result";
 
     return getValueFromWmsSql(sql, "Result")
         .then((result: any)=> {

@@ -1,6 +1,9 @@
 import {getIsExistsBuhtaView, executeWmsSql, getIsExistsWmsView} from "../../core/MsSqlDb";
 import {consoleError, consoleOk} from "../../core/console";
 import {BuhtaDatabase} from "../SqlConnections";
+import {registerSubconto} from "../../core/registerSubconto";
+
+registerSubconto({subconto: "Док", tableName: "Задание"});
 
 export function init_table_Задание(): Promise<void> {
     let create = "CREATE";
@@ -17,6 +20,8 @@ export function init_table_Задание(): Promise<void> {
                   Вид as ДокументВид, 
                   Договор as ДокументДоговор, 
                   Номер,
+                  'Задание '+Номер as Название,
+                  'Задание '+Номер as НомерНазвание,
                   Дата,
                   [Когда создал] Время,
                   [Юр.лицо] ЮрЛицо,

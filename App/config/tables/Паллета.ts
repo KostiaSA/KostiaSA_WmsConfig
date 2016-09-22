@@ -1,6 +1,9 @@
 import {getIsExistsBuhtaView, executeWmsSql, getIsExistsWmsView} from "../../core/MsSqlDb";
 import {consoleError, consoleOk} from "../../core/console";
 import {BuhtaDatabase} from "../SqlConnections";
+import {registerSubconto} from "../../core/registerSubconto";
+
+registerSubconto({subconto: "PAL", tableName: "Палета"});
 
 export function init_table_Паллета(): Promise<void> {
     let create = "CREATE";
@@ -15,6 +18,9 @@ export function init_table_Паллета(): Promise<void> {
                 SELECT
                   'PAL' ТипСубконто,
                   Ключ,
+                  Ключ as Номер,
+                  'Паллета '+Ключ as Название,
+                  'Паллета '+Ключ as НомерНазвание,
                   Глубина,
                   Ширина,
                   Высота,                 

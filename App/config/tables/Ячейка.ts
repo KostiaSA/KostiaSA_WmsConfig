@@ -4,7 +4,6 @@ import {BuhtaDatabase} from "../SqlConnections";
 import {registerSubconto} from "../../core/registerSubconto";
 
 
-registerSubconto({subconto: "CEL", tableName: "Ячейка"});
 
 export function init_table_Ячейка(): Promise<void> {
     let create = "CREATE";

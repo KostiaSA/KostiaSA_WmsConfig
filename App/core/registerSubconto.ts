@@ -10,3 +10,12 @@ export function registerSubconto(subconto: ISubconto) {
         throw "registerSubconto(): уже субконто с типом '" + subconto.subconto + "'";
     SubcontoList.push(subconto);
 }
+
+
+export function registerAllSubcontos() {
+    registerSubconto({subconto: "Док", tableName: "Задание"});
+    registerSubconto({subconto: "PAL", tableName: "Палета"});
+    registerSubconto({subconto: "ТМЦ", tableName: "Товар"});
+    registerSubconto({subconto: "CEL", tableName: "Ячейка"});
+
+}

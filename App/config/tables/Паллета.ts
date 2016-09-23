@@ -3,7 +3,6 @@ import {consoleError, consoleOk} from "../../core/console";
 import {BuhtaDatabase} from "../SqlConnections";
 import {registerSubconto} from "../../core/registerSubconto";
 
-registerSubconto({subconto: "PAL", tableName: "Палета"});
 
 export function init_table_Паллета(): Promise<void> {
     let create = "CREATE";

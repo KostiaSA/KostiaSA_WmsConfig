@@ -1,6 +1,9 @@
 import {executeBuhtaSql, executeWmsSql, getValueFromBuhtaSql} from "../core/MsSqlDb";
 import {consoleOk, consoleError} from "../core/console";
-const chalk = require('chalk');
+import {loadWmsConfigApp} from "../loadWmsConfigApp";
+
+loadWmsConfigApp();
+
 
 Promise.all([executeBuhtaSql("select 'Ok' as Ok")])
 

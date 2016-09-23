@@ -11,9 +11,9 @@ import {init_table_Ячейка} from "../config/tables/Ячейка";
 import {init_table_ЗаявкаНаПриход} from "../config/tables/ЗаявкаНаПриход";
 import {init_table_ЗаявкаНаПриходСпец} from "../config/tables/ЗаявкаНаПриходСпец";
 import {create_table_Остаток, init_table_Остаток, create_trigger_Докспец_wms_Остаток} from "../config/tables/Остаток";
-import {create_func_СубконтоНомерНазвание} from "../config/utils/create_func_СубконтоНомерНазвание";
+import {loadWmsConfigApp} from "../loadWmsConfigApp";
 
-
+loadWmsConfigApp();
 
 init_table_Задание()
     .then(()=>{
@@ -42,15 +42,6 @@ init_table_Задание()
     })
     .then(()=>{
         return create_trigger_Докспец_wms_Остаток();
-    })
-    .then(()=>{
-        return create_func_СубконтоНомерНазвание("Номер");
-    })
-    .then(()=>{
-        return create_func_СубконтоНомерНазвание("Название");
-    })
-    .then(()=>{
-        return create_func_СубконтоНомерНазвание("НомерНазвание");
     })
     .then(()=>{
         console.log("\n");

@@ -12,22 +12,24 @@ export function create_func_СубконтоНомерНазвание(fieldName
 
             let subcontoSql: string[] = [];
             subcontoSql = SubcontoList.map((sub: ISubconto)=> {
-                return `    IF @SubcontoType = '${sub.subconto}' SET @RETURN = (SELECT [${fieldName}] FROM [${sub.tableName}] WHERE Ключ=@SubcontoID) ELSE`;
+                return `    IF @SubcontoType = '${sub.subconto}' SET @RETURN = (SELECT [${fieldName}] FROM [${sub.tableName}] WHERE Ключ=@SubcontoId) ELSE`;
             });
 
 
             let sql = `
 ${create} FUNCTION Субконто${fieldName}(
   @SubcontoType VARCHAR(3),
-  @SubcontoID INT
+  @SubcontoId INT
 ) 
 RETURNS VARCHAR(MAX)
 AS
 BEGIN
-   DECLARE @RETURN VARCHAR(MAX)
-   ${subcontoSql.join("\n")}
-   SET @RETURN = 'Неизвестный тип субконто "'+@SubcontoType+'"'
-   RETURN @RETURN
+    IF (@SubcontoType='' OR @SubcontoType='Нет' OR @SubcontoId=0)
+      RETURN ''
+    DECLARE @RETURN VARCHAR(MAX)
+${subcontoSql.join("\n")}
+    SET @RETURN = 'Неизвестный тип субконто "'+@SubcontoType+'"'
+    RETURN @RETURN
 END
            `;
             return executeWmsSql(sql);

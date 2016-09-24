@@ -12,6 +12,7 @@ import {init_table_ЗаявкаНаПриход} from "../config/tables/Заяв
 import {init_table_ЗаявкаНаПриходСпец} from "../config/tables/ЗаявкаНаПриходСпец";
 import {create_table_Остаток, init_table_Остаток, create_trigger_Докспец_wms_Остаток} from "../config/tables/Остаток";
 import {loadWmsConfigApp} from "../loadWmsConfigApp";
+import {create_table_ШтрихКод} from "../config/tables/ШтрихКод";
 
 loadWmsConfigApp();
 
@@ -42,6 +43,9 @@ init_table_Задание()
     })
     .then(()=>{
         return create_trigger_Докспец_wms_Остаток();
+    })
+    .then(()=>{
+        return create_table_ШтрихКод();
     })
     .then(()=>{
         console.log("\n");

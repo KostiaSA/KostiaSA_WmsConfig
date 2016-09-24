@@ -29,7 +29,7 @@ CREATE TABLE _wms_Остаток (
    Количество MONEY DEFAULT(0)
 )
                 
-CREATE UNIQUE CLUSTERED INDEX [_wms_Остаток_PRMPARY_KEY] ON [dbo].[_wms_Остаток](
+CREATE UNIQUE CLUSTERED INDEX [_wms_Остаток_PRIMARY_KEY] ON [dbo].[_wms_Остаток](
 	[ОбъектТип] ASC,
 	[Объект] ASC,
 	[МестоТип] ASC,

@@ -7,6 +7,7 @@
     "check-sql": "node build/scripts/CheckSqlConnections.js",
     "init-tables": "node build/scripts/InitTables.js",
     "init-utils": "node build/scripts/InitUtils.js",
+    "fill-barcodes": "node build/scripts/FillBarcodes.js",
     "test1": "node build/scripts/test1.js"
   },
   "devDependencies": {

@@ -67,13 +67,11 @@ export function fill_table_ШтрихКод(): Promise<void> {
 
     let sql = `
 BEGIN TRAN
+
   TRUNCATE TABLE ШтрихКод
   
   INSERT ШтрихКод(Номер,ОбъектТип,Объект,Количество,Основной)
   SELECT Номер,'ТМЦ',ТМЦ,Количество,Основной FROM ${BuhtaDatabase}..[Штрих-код] WHERE LTRIM(RTRIM(Номер))>''
-
---  INSERT ШтрихКод(Номер,ОбъектТип,Объект,Количество,Основной)
---  SELECT '${palleteBarcodePrefix}'+REPLICATE('0',${palleteBarcodeLen}-LEN(Ключ))+LTRIM(STR(Ключ)),'PAL',Ключ,1,1 FROM ${BuhtaDatabase}..[скл_Паллета view]
 
   INSERT ШтрихКод(Номер,ОбъектТип,Объект,Количество,Основной)
   SELECT [Штрих-код],'PAL',Ключ,1,1 FROM ${BuhtaDatabase}..[скл_Паллета view]

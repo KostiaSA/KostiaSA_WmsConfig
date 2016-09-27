@@ -119,7 +119,7 @@ function executeSql(sqlBatch: string, database: string): Promise<any> {
     let options = {instanceName: sqlServerInstance} as any;
 
     let config: sql.config = {
-        driver: "msnodesqlv8",
+      //  driver: "msnodesqlv8",
         pool: {
             min: 1,
             max: 1,

@@ -10,7 +10,10 @@ import {init_table_Паллета} from "../config/tables/Паллета";
 import {init_table_Ячейка} from "../config/tables/Ячейка";
 import {init_table_ЗаявкаНаПриход} from "../config/tables/ЗаявкаНаПриход";
 import {init_table_ЗаявкаНаПриходСпец} from "../config/tables/ЗаявкаНаПриходСпец";
-import {create_table_Остаток, init_table_Остаток, create_trigger_Докспец_wms_Остаток} from "../config/tables/Остаток";
+import {
+    create_table_Остаток, init_table_Остаток, create_trigger_Докспец_wms_Остаток,
+    create_proc_Пересоставить_Остаток
+} from "../config/tables/Остаток";
 import {loadWmsConfigApp} from "../loadWmsConfigApp";
 import {create_table_ШтрихКод} from "../config/tables/ШтрихКод";
 
@@ -43,6 +46,9 @@ init_table_Задание()
     })
     .then(()=>{
         return create_trigger_Докспец_wms_Остаток();
+    })
+    .then(()=>{
+        return create_proc_Пересоставить_Остаток();
     })
     .then(()=>{
         return create_table_ШтрихКод();

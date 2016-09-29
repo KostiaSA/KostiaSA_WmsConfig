@@ -1,6 +1,6 @@
 import {
     getIsExistsBuhtaView, executeWmsSql, getIsExistsWmsView, getIsExistsBuhtaTable,
-    executeBuhtaSql, getIsExistsWmsTrigger, getIsExistsBuhtaTrigger
+    executeBuhtaSql, getIsExistsWmsTrigger, getIsExistsBuhtaTrigger, getIsExistsBuhtaProc
 } from "../../core/MsSqlDb";
 import {consoleError, consoleOk, consoleLog} from "../../core/console";
 import {BuhtaDatabase} from "../SqlConnections";
@@ -274,6 +274,75 @@ END
         })
         .then(()=> {
             consoleOk("create_trigger_Докспец_wms_Остаток");
+        })
+        .catch((err: any)=> {
+            consoleError(err);
+        });
+
+}
+
+export function create_proc_Пересоставить_Остаток(): Promise<void> {
+    let create = "CREATE";
+
+    return getIsExistsBuhtaProc("Пересоставить_Остаток")
+        .then((isExists: boolean)=> {
+            if (isExists === true)
+                create = "ALTER";
+
+            let dbFields = [
+                ["счет", "ДбСчет"],
+                ["местоТип", "ДбМестоТип"],
+                ["место", "ДбМесто"],
+                ["объектТип", "ДбОбъектТип"],
+                ["объект", "ДбОбъект"],
+                ["договорПриходаТип", "ДбДоговорПриходаТип"],
+                ["договорПрихода", "ДбДоговорПрихода"],
+                ["заданиеТип", "ДбЗаданиеТип"],
+                ["задание", "ДбЗадание"],
+                ["сотрудникТип", "ДбСотрудникТип"],
+                ["сотрудник", "ДбСотрудник"],
+                //["@количество", "[Количество 2]"],
+            ];
+
+            let krFields = [
+                ["счет", "КрСчет"],
+                ["местоТип", "КрМестоТип"],
+                ["место", "КрМесто"],
+                ["объектТип", "КрОбъектТип"],
+                ["объект", "КрОбъект"],
+                ["договорПриходаТип", "КрДоговорПриходаТип"],
+                ["договорПрихода", "КрДоговорПрихода"],
+                ["заданиеТип", "КрЗаданиеТип"],
+                ["задание", "КрЗадание"],
+                ["сотрудникТип", "КрСотрудникТип"],
+                ["сотрудник", "КрСотрудник"],
+                //["@количество", "[Количество]"],
+            ];
+
+            let sql = `
+${create} PROCEDURE Пересоставить_Остаток
+AS
+BEGIN
+  BEGIN TRAN
+  
+  DELETE FROM Остаток
+  
+  INSERT Остаток(${ emitFieldList(dbFields, "target")},количество)
+  SELECT ${ emitFieldList(dbFields, "source")}, SUM(ДбКоличество) FROM (
+    SELECT ${ emitFieldList(dbFields, "source")},ДбКоличество FROM ЗаданиеСпец WHERE Время>0  
+    UNION ALL SELECT ${ emitFieldList(dbFields, "source")},-КрКоличество FROM ЗаданиеСпец WHERE Время>0
+  ) E 
+  GROUP BY ${ emitFieldList(dbFields, "source")}
+  HAVING SUM(ДбКоличество)<>0
+  
+  COMMIT
+END   
+            `;
+            return executeWmsSql(sql);
+
+        })
+        .then(()=> {
+            consoleOk("create_proc_Пересоставить_Остаток");
         })
         .catch((err: any)=> {
             consoleError(err);

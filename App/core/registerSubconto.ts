@@ -14,7 +14,7 @@ export function registerSubconto(subconto: ISubconto) {
 
 export function registerAllSubcontos() {
     registerSubconto({subconto: "Док", tableName: "Задание"});
-    registerSubconto({subconto: "PAL", tableName: "Палета"});
+    registerSubconto({subconto: "PAL", tableName: "Паллета"});
     registerSubconto({subconto: "ТМЦ", tableName: "Товар"});
     registerSubconto({subconto: "CEL", tableName: "Ячейка"});
 

@@ -6,7 +6,7 @@ import {consoleOk, consoleError, consoleLog} from "../core/console";
 import {init_table_Задание} from "../config/tables/Задание";
 import {init_table_ЗаданиеСпец} from "../config/tables/ЗаданиеСпец";
 import {init_table_Товар} from "../config/tables/Товар";
-import {init_table_Паллета} from "../config/tables/Паллета";
+import {init_table_Паллета, create_proc_Перевод_свободных_паллет_в_новые} from "../config/tables/Паллета";
 import {init_table_Ячейка} from "../config/tables/Ячейка";
 import {init_table_ЗаявкаНаПриход} from "../config/tables/ЗаявкаНаПриход";
 import {init_table_ЗаявкаНаПриходСпец} from "../config/tables/ЗаявкаНаПриходСпец";
@@ -28,6 +28,9 @@ init_table_Задание()
     })
     .then(()=>{
         return init_table_Паллета();
+    })
+    .then(()=>{
+        return create_proc_Перевод_свободных_паллет_в_новые();
     })
     .then(()=>{
         return init_table_Ячейка();

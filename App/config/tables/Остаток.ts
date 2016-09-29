@@ -1,6 +1,6 @@
 import {
     getIsExistsBuhtaView, executeWmsSql, getIsExistsWmsView, getIsExistsBuhtaTable,
-    executeBuhtaSql, getIsExistsWmsTrigger, getIsExistsBuhtaTrigger, getIsExistsBuhtaProc
+    executeBuhtaSql, getIsExistsWmsTrigger, getIsExistsBuhtaTrigger, getIsExistsBuhtaProc, getIsExistsWmsProc
 } from "../../core/MsSqlDb";
 import {consoleError, consoleOk, consoleLog} from "../../core/console";
 import {BuhtaDatabase} from "../SqlConnections";
@@ -284,7 +284,7 @@ END
 export function create_proc_Пересоставить_Остаток(): Promise<void> {
     let create = "CREATE";
 
-    return getIsExistsBuhtaProc("Пересоставить_Остаток")
+    return getIsExistsWmsProc("Пересоставить_Остаток")
         .then((isExists: boolean)=> {
             if (isExists === true)
                 create = "ALTER";

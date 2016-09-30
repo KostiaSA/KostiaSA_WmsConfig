@@ -7,6 +7,7 @@ import {create_func_ДатаБезВремени} from "../config/utils/create_f
 import {create_func_СубконтоНомерНазвание} from "../config/utils/create_func_СубконтоНомерНазвание";
 import {create_proc_ПолучитьСубконтоПоШтрихКоду} from "../config/utils/create_proc_ПолучитьСубконтоПоШтрихКоду";
 import {loadWmsConfigApp} from "../loadWmsConfigApp";
+import {create_func_СубконтоХранитКоличество} from "../config/utils/create_func_СубконтоХранитКоличество";
 
 
 loadWmsConfigApp();
@@ -20,6 +21,9 @@ create_func_ДатаБезВремени()
     })
     .then(()=>{
         return create_func_СубконтоНомерНазвание("НомерНазвание");
+    })
+    .then(()=>{
+        return create_func_СубконтоХранитКоличество();
     })
      .then(()=>{
          return create_proc_ПолучитьСубконтоПоШтрихКоду();

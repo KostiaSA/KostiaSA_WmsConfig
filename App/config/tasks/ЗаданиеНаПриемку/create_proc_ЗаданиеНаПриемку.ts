@@ -2,12 +2,10 @@ import {getIsExistsWmsProc, executeWmsSql} from "../../../core/MsSqlDb";
 import {BuhtaDatabase} from "../../SqlConnections";
 import {consoleOk, consoleError} from "../../../core/console";
 import {emitFieldList} from "../../../core/emit";
-import {Бухта_ЮрЛицо} from "../../Buhta";
+import {Бухта_ЮрЛицо, ВидДокумента_ЗаданиеНаПриемку, ВидДокспец_ЗаданиеНаПриемТовара} from "../../Buhta";
 
 export function create_proc_СоздатьЗаданиеНаПриемку(): Promise<void> {
 
-    let документВид = 10000;
-    let докспецВид = 1;
 
     let create = "CREATE";
 
@@ -17,7 +15,7 @@ export function create_proc_СоздатьЗаданиеНаПриемку(): Pr
                 create = "ALTER";
 
             let zadFields = [
-                ["ДокументВид", документВид],
+                ["ДокументВид", ВидДокумента_ЗаданиеНаПриемку],
                 //["Номер", "ЗаявкаНаПриход.Номер"],
                 ["Дата", "@дата"],
                 ["[Когда создал]", "@время"],
@@ -26,7 +24,7 @@ export function create_proc_СоздатьЗаданиеНаПриемку(): Pr
             ];
 
             let specFields = [
-                ["ДокспецВид", документВид*1000+докспецВид],
+                ["ДокспецВид", ВидДокумента_ЗаданиеНаПриемку*1000+ВидДокспец_ЗаданиеНаПриемТовара],
                 ["Дата", "@дата"],
                 ["Время", "@время"],
                 ["Задание", "@новоеЗадание"],

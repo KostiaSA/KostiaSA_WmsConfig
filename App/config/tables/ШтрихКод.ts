@@ -65,19 +65,25 @@ CREATE INDEX IX_ШтрихКод_ОбъектТип_Объект ON ШтрихК
 
 export function fill_table_ШтрихКод(): Promise<void> {
 
+    // todo _скл_ГенерацияШКEAN13поТМЦ
     let sql = `
 BEGIN TRAN
 
   TRUNCATE TABLE ШтрихКод
   
   INSERT ШтрихКод(Номер,ОбъектТип,Объект,Количество,Основной)
-  SELECT Номер,'ТМЦ',ТМЦ,Количество,Основной FROM ${BuhtaDatabase}..[Штрих-код] WHERE LTRIM(RTRIM(Номер))>''
+  SELECT Номер,'ТМЦ',ТМЦ,Количество,Основной FROM ${BuhtaDatabase}..[Штрих-код] WHERE LTRIM(RTRIM(Номер))>'' AND Номер NOT LIKE '20%'
+   
+  INSERT ШтрихКод(Номер,ОбъектТип,Объект,Количество,Основной)
+  SELECT ${BuhtaDatabase}.dbo._скл_ГенерацияШКEAN13поТМЦ([ТМЦ].Ключ),'ТМЦ',Ключ,1,0 FROM ${BuhtaDatabase}..[ТМЦ]
 
   INSERT ШтрихКод(Номер,ОбъектТип,Объект,Количество,Основной)
   SELECT [Штрих-код],'PAL',Ключ,1,1 FROM ${BuhtaDatabase}..[скл_Паллета view]
 
   INSERT ШтрихКод(Номер,ОбъектТип,Объект,Количество,Основной)
   SELECT [Штрих-код],'CEL',Ключ,1,1 FROM ${BuhtaDatabase}..[скл_Ячейка view]
+  
+    
 
 COMMIT    
     `

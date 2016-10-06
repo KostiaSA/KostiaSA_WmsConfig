@@ -6,7 +6,7 @@ import {consoleError, consoleOk} from "../../core/console";
 import {BuhtaDatabase} from "../SqlConnections";
 import {registerSubconto} from "../../core/registerSubconto";
 import {emitFieldList} from "../../core/emit";
-import {Бухта_ЮрЛицо} from "../Buhta";
+import {Бухта_ЮрЛицо, ВидДокумента_НовыеПаллеты, ВидДокспец_НоваяПаллета} from "../Buhta";
 
 
 export function init_table_Паллета(): Promise<void> {
@@ -48,8 +48,6 @@ export function init_table_Паллета(): Promise<void> {
 export function create_proc_Перевод_свободных_паллет_в_новые(): Promise<void> {
     let create = "CREATE";
 
-    let документВид = 11000;
-    let докспецВид = 1;
 
     return getIsExistsWmsProc("Перевод_свободных_паллет_в_новые")
         .then((isExists: boolean)=> {
@@ -57,8 +55,7 @@ export function create_proc_Перевод_свободных_паллет_в_н
                 create = "ALTER";
 
             let zadFields = [
-                ["ДокументВид", документВид],
-                ["Номер", "''"],
+                ["ДокументВид", ВидДокумента_НовыеПаллеты],
                 ["Дата", "@дата"],
                 ["[Кто создал]", "'node'"],
                 ["[Когда создал]", "@время"],
@@ -66,7 +63,7 @@ export function create_proc_Перевод_свободных_паллет_в_н
             ];
 
             let specFields = [
-                ["ДокспецВид", документВид*1000+докспецВид],
+                ["ДокспецВид", ВидДокумента_НовыеПаллеты*1000+ВидДокспец_НоваяПаллета],
                 ["Дата", "@дата"],
                 ["Время", "@время"],
                 ["Задание", "@новоеЗадание"],

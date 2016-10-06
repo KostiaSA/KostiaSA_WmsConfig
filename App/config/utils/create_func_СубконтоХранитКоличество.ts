@@ -1,6 +1,6 @@
 import {getIsExistsWmsFunc, executeWmsSql} from "../../core/MsSqlDb";
 import {consoleOk, consoleError} from "../../core/console";
-import {SubcontoList, ISubconto} from "../../core/registerSubconto";
+import {SubcontoList, ISubcontoType} from "../../common/registerSubcontoType";
 
 export function create_func_СубконтоХранитКоличество(): Promise<void> {
     let create = "CREATE";

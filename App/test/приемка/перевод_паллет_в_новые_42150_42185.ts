@@ -4,9 +4,9 @@ import {
 } from "../../core/MsSqlDb";
 import {consoleError, consoleOk} from "../../core/console";
 
-import {registerSubconto} from "../../core/registerSubconto";
+import {registerSubconto} from "../../common/registerSubcontoType";
 import {emitFieldList} from "../../core/emit";
-import {Бухта_ЮрЛицо, ВидДокумента_НовыеПаллеты, ВидДокспец_НоваяПаллета} from "../../config/Buhta";
+import {Бухта_ЮрЛицо, ВидДокумента_НовыеПаллеты, ВидДокспец_НоваяПаллета} from "../../common/Buhta";
 
 
 export function перевод_паллет_в_новые_42150_42185(): Promise<void> {

@@ -1,8 +1,8 @@
 
 
-import {registerAllSubcontos} from "./core/registerSubconto";
+//import {registerAllSubcontos} from "./common/registerSubconto";
 
 export function loadWmsConfigApp(){
-    registerAllSubcontos();
+  //  registerAllSubcontos();
 
 }

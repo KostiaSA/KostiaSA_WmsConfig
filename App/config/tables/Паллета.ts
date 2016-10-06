@@ -4,9 +4,9 @@ import {
 } from "../../core/MsSqlDb";
 import {consoleError, consoleOk} from "../../core/console";
 import {BuhtaDatabase} from "../SqlConnections";
-import {registerSubconto} from "../../core/registerSubconto";
+import {registerSubconto} from "../../common/registerSubcontoType";
 import {emitFieldList} from "../../core/emit";
-import {Бухта_ЮрЛицо, ВидДокумента_НовыеПаллеты, ВидДокспец_НоваяПаллета} from "../Buhta";
+import {Бухта_ЮрЛицо, ВидДокумента_НовыеПаллеты, ВидДокспец_НоваяПаллета} from "../../common/Buhta";
 
 
 export function init_table_Паллета(): Promise<void> {

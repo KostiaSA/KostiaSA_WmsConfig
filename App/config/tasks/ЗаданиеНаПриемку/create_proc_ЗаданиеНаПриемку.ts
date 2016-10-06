@@ -2,7 +2,7 @@ import {getIsExistsWmsProc, executeWmsSql} from "../../../core/MsSqlDb";
 import {BuhtaDatabase} from "../../SqlConnections";
 import {consoleOk, consoleError} from "../../../core/console";
 import {emitFieldList} from "../../../core/emit";
-import {Бухта_ЮрЛицо, ВидДокумента_ЗаданиеНаПриемку, ВидДокспец_ЗаданиеНаПриемТовара} from "../../Buhta";
+import {Бухта_ЮрЛицо, ВидДокумента_ЗаданиеНаПриемку, ВидДокспец_ЗаданиеНаПриемТовара} from "../../../common/Buhta";
 
 export function create_proc_СоздатьЗаданиеНаПриемку(): Promise<void> {
 

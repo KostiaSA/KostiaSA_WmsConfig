@@ -1,6 +1,6 @@
 import {getIsExistsWmsFunc, executeWmsSql} from "../../core/MsSqlDb";
 import {consoleOk, consoleError} from "../../core/console";
-import {SubcontoList, ISubconto} from "../../core/registerSubconto";
+import {SubcontoList, ISubcontoType} from "../../common/registerSubcontoType";
 
 export function create_func_СубконтоНомерНазвание(fieldName: string): Promise<void> {
     let create = "CREATE";
@@ -11,8 +11,8 @@ export function create_func_СубконтоНомерНазвание(fieldName
                 create = "ALTER";
 
             let subcontoSql: string[] = [];
-            subcontoSql = SubcontoList.map((sub: ISubconto)=> {
-                return `    IF @SubcontoType = '${sub.subconto}' SET @RETURN = (SELECT [${fieldName}] FROM [${sub.tableName}] WHERE Ключ=@SubcontoId) ELSE`;
+            subcontoSql = SubcontoList.map((sub: ISubcontoType)=> {
+                return `    IF @SubcontoType = '${sub.type}' SET @RETURN = (SELECT [${fieldName}] FROM [${sub.tableName}] WHERE Ключ=@SubcontoId) ELSE`;
             });
 
 

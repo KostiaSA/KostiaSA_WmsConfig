@@ -1,7 +1,7 @@
 import {getIsExistsBuhtaView, executeWmsSql, getIsExistsWmsView, getIsExistsWmsTable} from "../../core/MsSqlDb";
 import {consoleError, consoleOk, consoleLog} from "../../core/console";
 import {BuhtaDatabase, WmsDatabase} from "../SqlConnections";
-import {registerSubconto} from "../../core/registerSubconto";
+import {registerSubconto} from "../../common/registerSubcontoType";
 
 const palleteBarcodePrefix="PAL";
 const palleteBarcodeLen=8;

@@ -1,7 +1,7 @@
 import {getIsExistsBuhtaView, executeWmsSql, getIsExistsWmsView} from "../../core/MsSqlDb";
 import {consoleError, consoleOk} from "../../core/console";
 import {BuhtaDatabase} from "../SqlConnections";
-import {registerSubconto} from "../../core/registerSubconto";
+import {registerSubconto} from "../../common/registerSubcontoType";
 
 
 export function init_table_Задание(): Promise<void> {

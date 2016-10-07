@@ -26,7 +26,8 @@ CREATE TABLE _wms_Остаток (
    Задание INT DEFAULT(0),
    СотрудникТип VARCHAR(3) DEFAULT(''),
    Сотрудник INT DEFAULT(0),
-   Количество MONEY DEFAULT(0)
+   Количество MONEY DEFAULT(0),
+   Порядок INT IDENTITY(1,1) NOT NULL
 )
                 
 CREATE UNIQUE CLUSTERED INDEX [_wms_Остаток_PRIMARY_KEY] ON [dbo].[_wms_Остаток](
@@ -57,7 +58,8 @@ INCLUDE (
 	[ДоговорПрихода],
 	[СотрудникТип],
 	[Сотрудник],
-	[Количество]
+	[Количество],
+	[Порядок]
 )
 	
 CREATE NONCLUSTERED INDEX [_wms_Остаток_Место_Объект_и_тд] ON [dbo].[_wms_Остаток](
@@ -74,7 +76,8 @@ INCLUDE (
 	[Задание],
 	[СотрудникТип],
 	[Сотрудник],
-	[Количество]
+	[Количество],
+	[Порядок]
 ) 
                 
             `;
@@ -118,7 +121,8 @@ export function init_table_Остаток(): Promise<void> {
                    Задание,
                    СотрудникТип,
                    Сотрудник,
-                   Количество
+                   Количество,
+                   Порядок
                 FROM [${BuhtaDatabase}].dbo._wms_Остаток
             `;
 
